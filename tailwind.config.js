@@ -7,12 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      colors: {
+        'forest-green': '#228B22',
+        'pine-green': '#01796F',
+        'burgundy': '#800020',
+        'logo': '#FDB72B'
     },
   },
-  plugins: [],
+  fontFamily: {
+    sans: ['var(--font-ubuntu)'],
+  },
+  plugins: [require('@tailwindcss/forms')],
+}
 }
