@@ -44,7 +44,7 @@ export default function NavBar() {
     const isActive = pathname === link.path;
     return (
       <Link href={link.path} key={link.label}>
-        <li className={isActive ? "mr-10 uppercase p-2 bg-burgundy rounded-md text-logo  text-xl":"mr-10 uppercase text-logo p-2  text-xl"}>
+        <li className={ isActive ? "mr-10 uppercase p-2 bg-burgundy rounded-md text-logo  text-xl":"mr-10 uppercase text-logo p-2  text-xl"}>
           {link.label}
         </li>
       </Link>
@@ -92,7 +92,7 @@ export default function NavBar() {
         <div className=" gap-4 items-center hidden sm:flex">
             <div className="cursor-pointer text-burgundy">SIGN IN</div>
           <Link href="/register">
-            <Button register>REGISTER</Button>
+            <Button register navbar>REGISTER</Button>
           </Link>
         </div>
         <div onClick={handleClick} className="sm:hidden cursor-pointer p-5">
