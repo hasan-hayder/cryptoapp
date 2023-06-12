@@ -70,7 +70,7 @@ export default function NavBar() {
   return (
     <nav
       className={`fixed w-full h-24 shadow-xl ${
-        isScrolled ? "bg-transparent/50" : ""
+        isScrolled ? "z-20 bg-transparent/50" : ""
       }`}
     >
       <div className="flex justify-between items-center h-full w-full px-2 sm:px-16">

@@ -5,6 +5,7 @@ import { CoinListResponse } from "../models/gecko-api";
 import { useState, useEffect } from "react";
 import Skeleton from "../(components)/Skeleton";
 import Button from "../(components)/Button";
+import Dropdown, {Currency} from "../(components)/Dropdown";
 
 const metadata = {
   title: "Zipcoin - Market",
@@ -15,12 +16,26 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<CoinListResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+
   
+
+
+
+  const currencies = [
+    {symbol: "$", value: "usd"},
+    {symbol: "€", value: "eur"},
+    {symbol: "¥", value: "jpy"},
+  ]
+
+  const [selection, setSelection] = useState(currencies[0]);
+  const handleSelect = (currency: Currency) => {
+    setSelection(currency);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en&precision=2`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selection.value}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en&precision=2`
       );
       const coinList: CoinListResponse[] = await response.json();
       setData(coinList);
@@ -28,7 +43,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, selection]);
 
   const config = [
     {
@@ -40,7 +55,7 @@ export default function Page() {
     {
       label: "Price",
       key: "current_price",
-      render: (data: CoinListResponse) => "$ " + data.current_price,
+      render: (data: CoinListResponse) => `${selection.symbol} ` + data.current_price,
     },
     {
       label: "24h %",
@@ -61,7 +76,7 @@ export default function Page() {
       render: (data: CoinListResponse) => {
         const marketCap = data.market_cap;
         const formattedMarketCap = formatMarketCap(marketCap);
-        return <span>$ {formattedMarketCap}</span>;
+        return <span className="gap-2"> {selection.symbol} {formattedMarketCap}</span>;
       },
     },
   ];
@@ -73,8 +88,10 @@ export default function Page() {
       return (marketCap / 1e3).toFixed(2) + " K";
     } else if (marketCap >= 1e6 && marketCap < 1e9) {
       return (marketCap / 1e6).toFixed(2) + " M";
-    } else {
+    } else if (marketCap >= 1e9 && marketCap < 1e12){
       return (marketCap / 1e9).toFixed(2) + " B";
+    } else {
+      return (marketCap / 1e12).toFixed(2) + " T";
     }
   }
 
@@ -93,17 +110,21 @@ export default function Page() {
 
   return (
     <div>
-    <div className="p-5 grid place-content-center">
+      <div className="md:flex text-2xl md:gap-4 mb-10 pl-10 py-10">
+        <div>Get cryptocurrency prices for 30 assets.</div>
+        <Dropdown value={selection} currencies={currencies} onChange={handleSelect}/>
+        </div>
+    <div className="p-5 mt-10 grid place-content-center">
       <Table data={data} config={config} />
       {isLoading && data.length === 0 && (
         <Skeleton times={10} className="w-96 h-12" />
       )}
-    </div>
-    <div className="flex w-full justify-center gap-4 my-4">{pageButtons}</div>
-    <div className="justify-center text-white">
+          <div className="justify-center text-white">
       Powered by
       <a href='https://coingecko.com'> CoinGecko</a>
     </div>
+    </div>
+    <div className="flex w-full justify-center gap-4 my-4">{pageButtons}</div>
     </div>
   );
 }
