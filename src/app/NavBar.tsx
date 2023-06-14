@@ -6,9 +6,6 @@ import Logo from "../../public/Logo.png";
 import {
   AiOutlineMenu,
   AiOutlineClose,
-  AiOutlineInstagram,
-  AiOutlineFacebook,
-  AiOutlineTwitter,
 } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import Button from "./(components)/Button";

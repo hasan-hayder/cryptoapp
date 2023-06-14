@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useRef } from "react";
-import { GoChevronDown, GoChevronLeft } from "react-icons/go";
+import { GoChevronDown } from "react-icons/go";
 import Button from "./Button";
-
 
 export interface Currency {
   symbol: string;
@@ -53,8 +52,8 @@ function Dropdown({ onChange, value, currencies }: DropdownProps) {
         onClick={() => handleCurrencyClick(currency)}
       >
         <div className="uppercase gap-6">
-        {currency.symbol}
-        {currency.value}
+          {currency.symbol}
+          {currency.value}
         </div>
       </div>
     );
@@ -62,16 +61,19 @@ function Dropdown({ onChange, value, currencies }: DropdownProps) {
 
   return (
     <div ref={divEl} className="md:w-48 relative">
-      <Button register className="px-4 py-2.5 text-center inline-flex items-center" onClick={handleClick}>
+      <Button
+        register
+        className="px-4 py-2.5 text-center inline-flex items-center"
+        onClick={handleClick}
+      >
         {value?.value}
-        {isOpen ? <GoChevronDown /> : <GoChevronLeft />}
-        </Button>
-        {isOpen && (
-          <div className="z-10 absolute top-full border rounded p-3 shadow bg-white w-full ">
-            {renderedCurrencies}
-          </div>
-        )}
-      
+        <GoChevronDown />
+      </Button>
+      {isOpen && (
+        <div className="z-10 absolute top-full border rounded p-3 shadow bg-white w-full ">
+          {renderedCurrencies}
+        </div>
+      )}
     </div>
   );
 }
