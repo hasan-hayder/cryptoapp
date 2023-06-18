@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply bg-gradient-to-b from-forest-green to-pine-green
+  }
+}
+
 .footer-content {
     display: grid;
     color: #010103;

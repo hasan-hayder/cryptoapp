@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-gradient-to-b from-forest-green to-pine-green ${ubuntu.variable} font-sans`}
+        className={` ${ubuntu.variable} font-sans`}
       >
         <NavBar />
         <div className="flex flex-col sm:min-h-screen pt-28">{children}</div>
