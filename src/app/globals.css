@@ -6,6 +6,10 @@
   html {
     @apply bg-gradient-to-b from-forest-green to-pine-green
   }
+
+  h1 {
+    @apply uppercase text-3xl sm:text-7xl my-5
+  }
 }
 
 .footer-content {
