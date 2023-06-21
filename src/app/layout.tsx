@@ -21,13 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={` ${ubuntu.variable} font-sans`}
-      >
+      <body className={` ${ubuntu.variable} font-sans`}>
         <NavBar />
         <div className="flex flex-col sm:min-h-screen pt-28">{children}</div>
         <div>
-        <Footer />
+          <Footer />
         </div>
       </body>
     </html>

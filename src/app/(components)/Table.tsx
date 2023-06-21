@@ -44,7 +44,7 @@ export default function Table({ data, config }: TableProps) {
     }
     return (
       <th
-        className="border-r p-2 border-burgundy"
+        className="p-2 "
         key={column.key}
         onClick={() => handleSort(column.key)}
       >
@@ -60,22 +60,22 @@ export default function Table({ data, config }: TableProps) {
       const aValue = a[sortColumn];
       const bValue = b[sortColumn];
 
-if (typeof aValue !== "undefined" && typeof bValue !== "undefined") {
-      if (typeof aValue === "string" && typeof bValue === "string") {
-        if (sortOrder === "asc") {
-          return aValue.localeCompare(bValue);
+      if (typeof aValue !== "undefined" && typeof bValue !== "undefined") {
+        if (typeof aValue === "string" && typeof bValue === "string") {
+          if (sortOrder === "asc") {
+            return aValue.localeCompare(bValue);
+          } else {
+            return bValue.localeCompare(aValue);
+          }
         } else {
-          return bValue.localeCompare(aValue);
-        }
-      } else {
-        if (sortOrder === "asc") {
-          return aValue - bValue;
-        } else {
-          return bValue - aValue;
+          if (sortOrder === "asc") {
+            return aValue - bValue;
+          } else {
+            return bValue - aValue;
+          }
         }
       }
-    }
-    return 0
+      return 0;
     })
     .map((rowData) => {
       const renderedCells = config.map((column) => {
@@ -92,7 +92,7 @@ if (typeof aValue !== "undefined" && typeof bValue !== "undefined") {
   return (
     <table className="table-auto  bg-logo  rounded-md">
       <thead>
-        <tr className="border-b-8 border-b-burgundy text-forest-green">
+        <tr className="border-b-4 divide-x-4 divide-burgundy border-b-burgundy text-forest-green">
           {renderedHeaders}
         </tr>
       </thead>

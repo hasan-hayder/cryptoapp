@@ -5,7 +5,7 @@ import { CoinListResponse } from "../models/gecko-api";
 import { useState, useEffect } from "react";
 import Skeleton from "../(components)/Skeleton";
 import Button from "../(components)/Button";
-import Dropdown, {Currency} from "../(components)/Dropdown";
+import Dropdown, { Currency } from "../(components)/Dropdown";
 
 const metadata = {
   title: "Zipcoin - Market",
@@ -17,20 +17,16 @@ export default function Page() {
   const [data, setData] = useState<CoinListResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  
-
-
-
   const currencies = [
-    {symbol: "$", value: "usd"},
-    {symbol: "€", value: "eur"},
-    {symbol: "¥", value: "jpy"},
-  ]
+    { symbol: "$", value: "usd" },
+    { symbol: "€", value: "eur" },
+    { symbol: "¥", value: "jpy" },
+  ];
 
   const [selection, setSelection] = useState(currencies[0]);
   const handleSelect = (currency: Currency) => {
     setSelection(currency);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +51,8 @@ export default function Page() {
     {
       label: "Price",
       key: "current_price",
-      render: (data: CoinListResponse) => `${selection.symbol} ` + data.current_price,
+      render: (data: CoinListResponse) =>
+        `${selection.symbol} ` + data.current_price,
     },
     {
       label: "24h %",
@@ -76,7 +73,12 @@ export default function Page() {
       render: (data: CoinListResponse) => {
         const marketCap = data.market_cap;
         const formattedMarketCap = formatMarketCap(marketCap);
-        return <span className="gap-2"> {selection.symbol} {formattedMarketCap}</span>;
+        return (
+          <span className="gap-2">
+            {" "}
+            {selection.symbol} {formattedMarketCap}
+          </span>
+        );
       },
     },
   ];
@@ -88,7 +90,7 @@ export default function Page() {
       return (marketCap / 1e3).toFixed(2) + " K";
     } else if (marketCap >= 1e6 && marketCap < 1e9) {
       return (marketCap / 1e6).toFixed(2) + " M";
-    } else if (marketCap >= 1e9 && marketCap < 1e12){
+    } else if (marketCap >= 1e9 && marketCap < 1e12) {
       return (marketCap / 1e9).toFixed(2) + " B";
     } else {
       return (marketCap / 1e12).toFixed(2) + " T";
@@ -110,21 +112,33 @@ export default function Page() {
 
   return (
     <div>
-      <div className="md:flex text-2xl md:gap-4 mb-10 pl-10 py-10">
+      <div className="md:flex text-2xl md:gap-4 mb-10 pl-10 py-10 items-baseline">
         <div>Get cryptocurrency prices for 30 assets.</div>
-        <Dropdown value={selection} currencies={currencies} onChange={handleSelect}/>
+        <div className="py-2">
+          <Dropdown
+            value={selection}
+            currencies={currencies}
+            onChange={handleSelect}
+          />
         </div>
-    <div className="p-5 mt-10 grid place-content-center">
-      <Table data={data} config={config} />
-      {isLoading && data.length === 0 && (
-        <Skeleton times={10} className="w-96 h-12" />
-      )}
-          <div className="justify-center text-white">
-      Powered by
-      <a href='https://coingecko.com'> CoinGecko</a>
-    </div>
-    </div>
-    <div className="flex w-full justify-center gap-4 my-4">{pageButtons}</div>
+      </div>
+      <div className="p-5 mt-10 grid place-content-center">
+        <Table data={data} config={config} />
+        {isLoading && data.length === 0 && (
+          <Skeleton times={10} className="w-96 h-12" />
+        )}
+        <div className="justify-center text-white">
+          Powered by
+          <a
+            href="https://coingecko.com"
+            className="hover:text-logo transition"
+          >
+            {" "}
+            CoinGecko
+          </a>
+        </div>
+      </div>
+      <div className="flex w-full justify-center gap-4 my-4">{pageButtons}</div>
     </div>
   );
 }

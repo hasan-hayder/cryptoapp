@@ -10,6 +10,7 @@ function Skeleton({ times, className }: { times: number; className: string }) {
     "flex",
     "items-center",
     "justify-between",
+    "animate-pulse",
     className
   );
 
@@ -22,7 +23,6 @@ function Skeleton({ times, className }: { times: number; className: string }) {
     "to-gray-200",
     "animate-shimmer"
   );
-  
 
   const boxes = Array(times)
     .fill(0)

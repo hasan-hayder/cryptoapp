@@ -1,16 +1,18 @@
-import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineTwitter } from "react-icons/ai";
+import {
+  AiOutlineInstagram,
+  AiOutlineFacebook,
+  AiOutlineTwitter,
+} from "react-icons/ai";
 
 export default function Footer() {
   return (
-    <div className="flex self-end py-15 sm:py-20 bg-logo w-full sm:h-20 justify-center">
-        <div className="flex-col p-5">
-      <div className="flex gap-4 items-center text-center my-5">
-        <AiOutlineInstagram size={30} className="cursor-pointer mr-4" />
-        <AiOutlineFacebook size={30} className="cursor-pointer mr-4" />
-        <AiOutlineTwitter size={30} className="cursor-pointer mr-4" />
+    <div className=" flex flex-col py-20 sm:py-40 bg-logo items-center">
+      <div className="flex gap-4 my-5">
+        <AiOutlineInstagram size={45} className="cursor-pointer mr-4" />
+        <AiOutlineFacebook size={45} className="cursor-pointer mr-4" />
+        <AiOutlineTwitter size={45} className="cursor-pointer mr-4" />
       </div>
-      <p className="my-5 text-center">©2023 - Zipcoin</p>
-      </div>
+      <div className="my-10 text-xl">©2023 - Zipcoin</div>
     </div>
   );
 }
