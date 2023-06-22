@@ -43,9 +43,13 @@ function About() {
 
   return (
     <div className="flex flex-col justify-center h-center items-center py-8">
-      <h1 className="uppercase items-center 
+      <h1
+        className="uppercase items-center 
       gap-4 flex flex-col text-7xl p-10
-       bg-gradient-to-r from-burgundy to-logo text-transparent bg-clip-text">Why you should <div>join us</div></h1>
+       bg-gradient-to-r from-burgundy to-logo text-transparent bg-clip-text"
+      >
+        Why you should <div>join us</div>
+      </h1>
       <div className="flex flex-col gap-8 my-4">{reasonsList}</div>
     </div>
   );
