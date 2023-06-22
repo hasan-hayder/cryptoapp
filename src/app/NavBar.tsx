@@ -3,13 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/Logo.png";
-import {
-  AiOutlineMenu,
-  AiOutlineClose,
-} from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import Button from "./(components)/Button";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,13 +32,20 @@ export default function NavBar() {
     { label: "Home", path: "/" },
     { label: "Why Us", path: "/about" },
     { label: "Market", path: "/market" },
+    { label: "NFT", path: "/nft" },
   ];
 
   const renderedLinks = links.map((link) => {
     const isActive = pathname === link.path;
     return (
       <Link href={link.path} key={link.label}>
-        <li className={ isActive ? "mr-10 uppercase p-2 bg-burgundy rounded-md text-logo  text-xl":"mr-10 uppercase text-logo p-2  text-xl"}>
+        <li
+          className={
+            isActive
+              ? "mr-10 uppercase p-2 bg-burgundy rounded-md text-logo  text-xl"
+              : "mr-10 uppercase text-logo p-2  text-xl"
+          }
+        >
           {link.label}
         </li>
       </Link>
@@ -87,9 +91,9 @@ export default function NavBar() {
           <ul className="hidden sm:flex">{renderedLinks}</ul>
         </div>
         <div className=" gap-4 items-center hidden sm:flex">
-            <div className="cursor-pointer text-burgundy">SIGN IN</div>
+          <div className="cursor-pointer text-burgundy">SIGN IN</div>
           <Link href="/register">
-            <Button register navbar>REGISTER</Button>
+            <Button navbar>REGISTER</Button>
           </Link>
         </div>
         <div onClick={handleClick} className="sm:hidden cursor-pointer p-5">
@@ -113,7 +117,9 @@ export default function NavBar() {
         </div>
         <div className="flex gap-4 items-center">
           <Link href="/register">
-            <Button register onClick={() => setOpen(false)}>REGISTER</Button>
+            <Button navbar onClick={() => setOpen(false)}>
+              REGISTER
+            </Button>
           </Link>
         </div>
       </div>

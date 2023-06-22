@@ -92,11 +92,11 @@ export default function Table({ data, config }: TableProps) {
   return (
     <table className="table-auto  bg-logo  rounded-md">
       <thead>
-        <tr className="border-b-4 divide-x-4 divide-burgundy border-b-burgundy text-forest-green">
+        <tr className="border-b-4  border-b-burgundy text-forest-green">
           {renderedHeaders}
         </tr>
       </thead>
-      <tbody>{renderedRows}</tbody>
+      <tbody className="divide-y-4 divide-forest-green">{renderedRows}</tbody>
     </table>
   );
 }

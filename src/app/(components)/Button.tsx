@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import className from 'classnames';
-import { twMerge } from 'tailwind-merge';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import className from "classnames";
+import { twMerge } from "tailwind-merge";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -12,14 +12,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 function Button({ children, submit, register, navbar, ...rest }: ButtonProps) {
-  let classes = className(rest.className, 'flex items-center uppercase px-3 py-1.5 rounded-lg', {
-    'bg-emerald-700 text-white': submit,
-    'bg-logo text-burgundy': register,
-    'px-8 rounded-full': navbar
-  });
+  let classes = className(
+    rest.className,
+    "flex items-center uppercase px-3 py-1.5 rounded-lg",
+    {
+      "bg-emerald-700 text-white": submit,
+      "bg-logo text-burgundy": register,
+      "px-8 rounded-full bg-logo text-burgundy": navbar,
+    }
+  );
   classes = twMerge(classes);
 
-  return <button {...rest} className={classes}>{children}</button>
+  return (
+    <button {...rest} className={classes}>
+      {children}
+    </button>
+  );
 }
 
 export default Button;

@@ -10,6 +10,10 @@
   h1 {
     @apply uppercase text-3xl sm:text-7xl my-5
   }
+
+  h2 {
+    @apply  text-2xl sm:text-5xl my-5
+  }
 }
 
 .footer-content {

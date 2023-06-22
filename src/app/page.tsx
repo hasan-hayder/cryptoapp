@@ -8,15 +8,13 @@ export default function Home() {
       <div className="flex-wrap lg:basis-3/5  lg:pt-5 lg:pl-5">
         <div className="text-burgundy">
           <h1>Buy Bitcoin and Cryptocurrencies</h1>
-          <p className="text-3xl sm:text-4xl">
-            Register now and start trading.
-          </p>
+          <h2>Register now and start trading.</h2>
         </div>
         <div>
-          <form className="my-8 h-12 flex">
+          <form className="flex my-8 h-12">
             <input
               type="email"
-              className="mr-5 border-2 rounded-lg px-5 focus:outline-none focus:border-burgundy focus:ring-burgundy"
+              className=" mr-5 border-2 rounded-lg px-5 focus:outline-none focus:border-burgundy focus:ring-burgundy"
               placeholder="Email Address"
             ></input>
             <Button register>Get Started</Button>
