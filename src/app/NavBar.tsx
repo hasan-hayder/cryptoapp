@@ -91,7 +91,9 @@ export default function NavBar() {
           <ul className="hidden sm:flex">{renderedLinks}</ul>
         </div>
         <div className=" gap-4 items-center hidden sm:flex">
-          <div className="cursor-pointer text-burgundy">SIGN IN</div>
+          <div className="cursor-pointer text-burgundy">
+            <Link href="/signin">SIGN IN</Link>
+          </div>
           <Link href="/register">
             <Button navbar>REGISTER</Button>
           </Link>
