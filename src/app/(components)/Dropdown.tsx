@@ -63,7 +63,7 @@ function Dropdown({ onChange, value, currencies }: DropdownProps) {
     <div ref={divEl} className="md:w-48 relative">
       <Button
         register
-        className="px-4 py-2.5 text-center inline-flex items-center"
+        className="px-4 py-2.5 text-center inline-flex items-center rounded-md"
         onClick={handleClick}
       >
         {value?.value}

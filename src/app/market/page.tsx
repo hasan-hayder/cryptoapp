@@ -103,7 +103,11 @@ export default function Page() {
       <Button
         key={i}
         onClick={() => setCurrentPage(i)}
-        className={i === currentPage ? "bg-forest-green" : "bg-logo"}
+        className={
+          i === currentPage
+            ? "bg-forest-green rounded-lg"
+            : "bg-logo rounded-sm"
+        }
       >
         {i}
       </Button>

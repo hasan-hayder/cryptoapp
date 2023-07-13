@@ -14,9 +14,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 function Button({ children, submit, register, navbar, ...rest }: ButtonProps) {
   let classes = className(
     rest.className,
-    "flex items-center uppercase px-3 py-1.5 rounded-lg",
+    "flex text-sm  md:text-lg items-center uppercase px-3 py-1.5 ",
     {
-      "bg-emerald-700 text-white": submit,
+      "bg-emerald-700 text-white rounded-lg": submit,
       "bg-logo text-burgundy": register,
       "px-8 rounded-full bg-logo text-burgundy": navbar,
     }

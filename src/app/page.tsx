@@ -14,7 +14,7 @@ export default function Home() {
           <form className="flex my-8 h-12">
             <input
               type="email"
-              className=" mr-5 border-2 rounded-lg px-5 focus:outline-none focus:border-burgundy focus:ring-burgundy"
+              className="mr-2 border-2  px-5 focus:outline-none focus:border-burgundy focus:ring-burgundy"
               placeholder="Email Address"
             ></input>
             <Button register>Get Started</Button>

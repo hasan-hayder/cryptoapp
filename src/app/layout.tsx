@@ -21,6 +21,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="theme-color"
+          content="#FDB72B"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#228B22"
+          media="(prefers-color-scheme: dark)"
+        />
+      </head>
       <body className={` ${ubuntu.variable} font-sans`}>
         <NavBar />
         <div className="flex flex-col sm:min-h-screen pt-28">{children}</div>
