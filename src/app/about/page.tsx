@@ -34,7 +34,10 @@ function About() {
 
   const reasonsList = reasons.map((reason) => {
     return (
-      <Panel key={reason.title}>
+      <Panel
+        key={reason.title}
+        className="hover:-translate-y-2 hover:shadow-xl hover:shadow-logo"
+      >
         <div>{reason.icon}</div>
         <div className="p-5">{reason.title}</div>
       </Panel>
