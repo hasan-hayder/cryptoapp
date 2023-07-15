@@ -17,6 +17,9 @@ export default function Page() {
   const [data, setData] = useState<CoinListResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const rowsPerPage = 10;
+  const numPages = Math.ceil(data.length / rowsPerPage);
+
   const currencies = [
     { symbol: "$", value: "usd" },
     { symbol: "€", value: "eur" },
@@ -31,7 +34,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selection.value}&order=market_cap_desc&per_page=10&page=${currentPage}&sparkline=false&locale=en&precision=2`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selection.value}&order=market_cap_desc&per_page=30&page=1&sparkline=false&locale=en&precision=2`
       );
       const coinList: CoinListResponse[] = await response.json();
       setData(coinList);
@@ -39,7 +42,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [currentPage, selection]);
+  }, [selection]);
 
   const config = [
     {
@@ -98,7 +101,7 @@ export default function Page() {
   }
 
   const pageButtons = [];
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= numPages; i++) {
     pageButtons.push(
       <Button
         key={i}
@@ -127,7 +130,12 @@ export default function Page() {
         </div>
       </div>
       <div className="p-5 mt-10 grid place-content-center">
-        <Table data={data} config={config} />
+        <Table
+          data={data}
+          config={config}
+          rowsPerPage={rowsPerPage}
+          currentPage={currentPage}
+        />
         {isLoading && data.length === 0 && (
           <Skeleton times={10} className="w-96 h-12" />
         )}

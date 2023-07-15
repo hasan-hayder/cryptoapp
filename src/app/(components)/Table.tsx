@@ -4,9 +4,16 @@ import { GoChevronUp, GoChevronDown } from "react-icons/go";
 interface TableProps {
   data: any[];
   config: any[];
+  rowsPerPage: number;
+  currentPage: number;
 }
 
-export default function Table({ data, config }: TableProps) {
+export default function Table({
+  data,
+  config,
+  rowsPerPage,
+  currentPage,
+}: TableProps) {
   const [sortColumn, setSortColumn] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
 
@@ -55,6 +62,9 @@ export default function Table({ data, config }: TableProps) {
     );
   });
 
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
   const renderedRows = [...data]
     .sort((a, b) => {
       const aValue = a[sortColumn];
@@ -77,6 +87,7 @@ export default function Table({ data, config }: TableProps) {
       }
       return 0;
     })
+    .slice(startIndex, endIndex)
     .map((rowData) => {
       const renderedCells = config.map((column) => {
         return (
