@@ -51,7 +51,7 @@ export default function Table({
     }
     return (
       <th
-        className="p-2 "
+        className="p-1 sm:px-5"
         key={column.key}
         onClick={() => handleSort(column.key)}
       >
@@ -91,7 +91,7 @@ export default function Table({
     .map((rowData) => {
       const renderedCells = config.map((column) => {
         return (
-          <td className="p-2" key={column.key}>
+          <td className="p-2 sm:p-5 text-sm sm:text-2xl" key={column.key}>
             {column.render(rowData)}
           </td>
         );
@@ -101,9 +101,9 @@ export default function Table({
     });
 
   return (
-    <table className="table-auto  bg-logo  rounded-md">
+    <table className="table-fixed sm:table-auto bg-logo  rounded-md">
       <thead>
-        <tr className="border-b-4  border-b-burgundy text-forest-green">
+        <tr className="border-b-4  border-b-burgundy text-sm sm:text-xl text-forest-green">
           {renderedHeaders}
         </tr>
       </thead>

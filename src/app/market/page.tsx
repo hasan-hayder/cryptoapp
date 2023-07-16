@@ -129,7 +129,7 @@ export default function Page() {
           />
         </div>
       </div>
-      <div className="p-5 mt-10 grid place-content-center">
+      <div className="p-5 sm:p-20 mt-10 grid sm:justify-items-stretch">
         <Table
           data={data}
           config={config}
