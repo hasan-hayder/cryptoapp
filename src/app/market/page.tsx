@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Skeleton from "../(components)/Skeleton";
 import Button from "../(components)/Button";
 import Dropdown, { Currency } from "../(components)/Dropdown";
+import CoinSearch from "../(components)/CoinSearch";
 
 const metadata = {
   title: "Zipcoin - Market",
@@ -16,6 +17,7 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<CoinListResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredData, setFilteredData] = useState<CoinListResponse[]>(data);
 
   const rowsPerPage = 10;
   const numPages = Math.ceil(data.length / rowsPerPage);
@@ -43,6 +45,10 @@ export default function Page() {
 
     fetchData();
   }, [selection]);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const config = [
     {
@@ -117,9 +123,16 @@ export default function Page() {
     );
   }
 
+  const findCoin = (searchTerm: string) => {
+    const filtered = data.filter((coin) =>
+      coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
   return (
     <div>
-      <div className="md:flex text-2xl md:gap-4 mb-10 pl-10 py-10 items-baseline">
+      <div className="md:flex text-2xl md:gap-4 mb-10 px-3 sm:pl-10 py-10 items-baseline">
         <div>Get cryptocurrency prices for 30 assets.</div>
         <div className="py-2">
           <Dropdown
@@ -129,9 +142,10 @@ export default function Page() {
           />
         </div>
       </div>
-      <div className="p-5 sm:p-20 mt-10 grid sm:justify-items-stretch">
+      <div className="py-5 sm:p-20 mb-10 grid sm:justify-items-stretch">
+        <CoinSearch onSearch={findCoin} />
         <Table
-          data={data}
+          data={filteredData}
           config={config}
           rowsPerPage={rowsPerPage}
           currentPage={currentPage}
@@ -139,13 +153,12 @@ export default function Page() {
         {isLoading && data.length === 0 && (
           <Skeleton times={10} className="w-96 h-12" />
         )}
-        <div className="justify-center text-white">
+        <div className="flex justify-center text-white">
           Powered by
           <a
             href="https://coingecko.com"
-            className="hover:text-logo transition"
+            className="hover:text-logo transition mx-1"
           >
-            {" "}
             CoinGecko
           </a>
         </div>

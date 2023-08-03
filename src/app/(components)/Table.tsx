@@ -97,11 +97,15 @@ export default function Table({
         );
       });
 
-      return <tr key={rowData.id}>{renderedCells}</tr>;
+      return (
+        <tr className="h-16" key={rowData.id}>
+          {renderedCells}
+        </tr>
+      );
     });
 
   return (
-    <table className="table-fixed sm:table-auto bg-logo  rounded-md">
+    <table className="table-fixed sm:table-auto bg-logo  sm:rounded-md">
       <thead>
         <tr className="border-b-4  border-b-burgundy text-sm sm:text-xl text-forest-green">
           {renderedHeaders}

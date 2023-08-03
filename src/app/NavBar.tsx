@@ -32,7 +32,7 @@ export default function NavBar() {
     { label: "Home", path: "/" },
     { label: "Why Us", path: "/about" },
     { label: "Market", path: "/market" },
-    { label: "NFT", path: "/nft" },
+    // { label: "NFT", path: "/nft" },
   ];
 
   const renderedLinks = links.map((link) => {
@@ -71,11 +71,11 @@ export default function NavBar() {
   return (
     <nav
       className={`fixed w-full h-24 shadow-xl ${
-        isScrolled ? "z-20 bg-transparent/50" : ""
+        isScrolled ? "z-20 bg-transparent/50" : "z-50"
       }`}
     >
-      <div className="flex justify-between items-center h-full w-full px-2 sm:px-16">
-        <div className="p-2">
+      <div className="flex justify-between items-center h-full w-full  sm:px-16">
+        <div className="sm:p-2">
           <Link href="/">
             <Image
               src={Logo}
@@ -105,7 +105,7 @@ export default function NavBar() {
       <div
         className={
           open
-            ? "fixed left-0 top-0 w-[65%]  sm:block h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
+            ? "fixed left-0 top-0 w-[65%] sm:block h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
             : "fixed left-[100%] top-0 p-10 ease-in duration-500"
         }
       >
