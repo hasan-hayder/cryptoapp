@@ -31,3 +31,10 @@
     margin: 0 auto !important;
     padding: 0 2.5rem !important;
   }
+
+@media (max-width: 640px) {
+  .fixed-search-bar {
+    top: 64px;
+    transition: top 0.3s ease;
+  }
+}

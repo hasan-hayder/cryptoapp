@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GoSearch } from "react-icons/go";
 
 type CoinSearchProps = {
@@ -9,6 +7,19 @@ type CoinSearchProps = {
 
 export default function CoinSearch({ onSearch }: CoinSearchProps) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsFixed(window.innerWidth <= 640 && window.scrollY > 250);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleSearchTermChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -19,7 +30,11 @@ export default function CoinSearch({ onSearch }: CoinSearchProps) {
   };
 
   return (
-    <div className="sm:px-20 py-5 sm:py-10">
+    <div
+      className={`sm:px-20 pb-5 sm:py-10 ${
+        isFixed ? "fixed top-24 left-0 right-0 z-50" : ""
+      }`}
+    >
       <div className="flex justify-center sm:justify-end">
         <div className="relative border-4 w-full sm:w-1/4  hover:border-logo focus-within:border-logo">
           <input
