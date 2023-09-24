@@ -1,4 +1,5 @@
-import { Fragment, useState } from "react";
+"use client";
+
 import { GoChevronUp, GoChevronDown } from "react-icons/go";
 
 interface TableProps {
