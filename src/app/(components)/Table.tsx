@@ -15,12 +15,16 @@ export default function Table({
   currentPage,
 }: TableProps) {
   const [sortColumn, setSortColumn] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("none");
 
   const handleSort = (columnKey: any) => {
     if (sortColumn === columnKey) {
       // Toggle sorting order if the same column is clicked
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      setSortOrder((prevSortOrder) => {
+        if (prevSortOrder === "asc") return "desc";
+        else if (prevSortOrder === "desc") return "none";
+        else return "asc";
+      });
     } else {
       // Set new sorting column and default sorting order
       setSortColumn(columnKey);
@@ -35,13 +39,15 @@ export default function Table({
           <GoChevronUp />{" "}
         </span>
       ); // Upward-pointing arrow
-    } else {
+    } else if (sortOrder === "desc") {
       return (
         <span>
           {" "}
           <GoChevronDown />{" "}
         </span>
       ); // Downward-pointing arrow
+    } else {
+      return;
     }
   };
 
@@ -74,14 +80,18 @@ export default function Table({
         if (typeof aValue === "string" && typeof bValue === "string") {
           if (sortOrder === "asc") {
             return aValue.localeCompare(bValue);
-          } else {
+          } else if (sortOrder === "desc") {
             return bValue.localeCompare(aValue);
+          } else {
+            return 0;
           }
         } else {
           if (sortOrder === "asc") {
             return aValue - bValue;
-          } else {
+          } else if (sortOrder === "desc") {
             return bValue - aValue;
+          } else {
+            return 0;
           }
         }
       }
