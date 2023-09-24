@@ -11,6 +11,8 @@ module.exports = {
         "forest-green": "#228B22",
         "pine-green": "#01796F",
         burgundy: "#800020",
+        twitter: "#4F9EED",
+        facebook: "#4F66A6",
         logo: "#FDB72B",
         azul: " #4B74B0",
         "baby-blue": "#82EEFD",

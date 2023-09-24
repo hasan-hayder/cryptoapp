@@ -31,6 +31,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.3"
+    "@tailwindcss/forms": "^0.5.3",
+    "ts-node": "^10.9.1"
   }
 }
