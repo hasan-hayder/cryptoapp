@@ -60,8 +60,11 @@ export default function Page() {
     {
       label: "Price",
       key: "current_price",
-      render: (data: CoinListResponse) =>
-        `${selection.symbol} ` + data.current_price,
+      render: (data: CoinListResponse) => {
+        const price = data.current_price;
+        const formattedPrice = formatPrice(price);
+        return `${selection.symbol} ` + formattedPrice;
+      },
     },
     {
       label: "24h %",
@@ -104,6 +107,12 @@ export default function Page() {
     } else {
       return (marketCap / 1e12).toFixed(2) + " T";
     }
+  }
+
+  function formatPrice(num: number) {
+    if (num > 1e4) {
+      return Math.floor(num);
+    } else return num;
   }
 
   const pageButtons = [];
